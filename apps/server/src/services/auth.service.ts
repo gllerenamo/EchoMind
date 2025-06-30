@@ -1,6 +1,7 @@
 import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { Patient } from '../entities/patient.entity';
 import { Doctor } from '../entities/doctor.entity';
@@ -13,6 +14,7 @@ export class AuthService {
     private patientRepository: Repository<Patient>,
     @InjectRepository(Doctor)
     private doctorRepository: Repository<Doctor>,
+    private jwtService: JwtService,
   ) {}
 
   async registerPatient(registerDto: RegisterPatientDto) {
@@ -38,9 +40,16 @@ export class AuthService {
 
     const savedPatient = await this.patientRepository.save(patient);
 
+    // Generar token JWT
+    const payload = { sub: savedPatient.id, email: savedPatient.email, role: savedPatient.role };
+    const token = this.jwtService.sign(payload);
+
     // Retornar sin contraseña
     const { password, ...result } = savedPatient;
-    return result;
+    return {
+      user: result,
+      token,
+    };
   }
 
   async registerDoctor(registerDto: RegisterDoctorDto) {
@@ -74,9 +83,16 @@ export class AuthService {
 
     const savedDoctor = await this.doctorRepository.save(doctor);
 
+    // Generar token JWT
+    const payload = { sub: savedDoctor.id, email: savedDoctor.email, role: savedDoctor.role };
+    const token = this.jwtService.sign(payload);
+
     // Retornar sin contraseña
     const { password, ...result } = savedDoctor;
-    return result;
+    return {
+      user: result,
+      token,
+    };
   }
 
   async login(loginDto: LoginDto) {
@@ -103,9 +119,16 @@ export class AuthService {
         throw new UnauthorizedException('Credenciales inválidas');
       }
 
+      // Generar token JWT
+      const payload = { sub: doctor.id, email: doctor.email, role: doctor.role };
+      const token = this.jwtService.sign(payload);
+
       // Retornar sin contraseña
       const { password, ...result } = doctor;
-      return result;
+      return {
+        user: result,
+        token,
+      };
     }
 
     // Verificar contraseña del paciente
@@ -114,8 +137,15 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
+    // Generar token JWT
+    const payload = { sub: patient.id, email: patient.email, role: patient.role };
+    const token = this.jwtService.sign(payload);
+
     // Retornar sin contraseña
     const { password, ...result } = patient;
-    return result;
+    return {
+      user: result,
+      token,
+    };
   }
 } 

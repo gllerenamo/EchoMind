@@ -1,5 +1,6 @@
-import { Controller, Post, Body, HttpCode, HttpStatus, ValidationPipe, UsePipes } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus, ValidationPipe, UsePipes, Get, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { RegisterPatientDto, RegisterDoctorDto, LoginDto } from '../dto';
 
 @Controller('auth')
@@ -9,20 +10,20 @@ export class AuthController {
   @Post('register/patient')
   @UsePipes(new ValidationPipe({ transform: true }))
   async registerPatient(@Body() registerDto: RegisterPatientDto) {
-    const patient = await this.authService.registerPatient(registerDto);
+    const result = await this.authService.registerPatient(registerDto);
     return {
       message: 'Paciente registrado exitosamente',
-      data: patient,
+      data: result,
     };
   }
 
   @Post('register/doctor')
   @UsePipes(new ValidationPipe({ transform: true }))
   async registerDoctor(@Body() registerDto: RegisterDoctorDto) {
-    const doctor = await this.authService.registerDoctor(registerDto);
+    const result = await this.authService.registerDoctor(registerDto);
     return {
       message: 'Médico registrado exitosamente',
-      data: doctor,
+      data: result,
     };
   }
 
@@ -30,10 +31,19 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UsePipes(new ValidationPipe({ transform: true }))
   async login(@Body() loginDto: LoginDto) {
-    const user = await this.authService.login(loginDto);
+    const result = await this.authService.login(loginDto);
     return {
       message: 'Inicio de sesión exitoso',
-      data: user,
+      data: result,
+    };
+  }
+
+  @Get('profile')
+  @UseGuards(JwtAuthGuard)
+  async getProfile(@Request() req) {
+    return {
+      message: 'Perfil obtenido exitosamente',
+      data: req.user,
     };
   }
 } 
