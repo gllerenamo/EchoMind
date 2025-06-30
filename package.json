@@ -1,0 +1,34 @@
+{
+  "name": "echomind-monorepo",
+  "version": "1.0.0",
+  "description": "Plataforma segura de comunicación y colaboración entre médicos especialistas y pacientes",
+  "private": true,
+  "license": "MIT",
+  "author": "EchoMind Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gllerenamo/echomind.git"
+  },
+  "keywords": [
+    "medical",
+    "healthcare",
+    "collaboration",
+    "telemedicine",
+    "consultation",
+    "typescript",
+    "nextjs",
+    "nestjs"
+  ],
+  "scripts": {
+    "dev": "pnpm --parallel --stream dev",
+    "build": "pnpm --filter \"./apps/*\" build"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@9.4.0"
+} 
