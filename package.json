@@ -1,6 +1,6 @@
 {
   "name": "echomind-monorepo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Plataforma segura de comunicación y colaboración entre médicos especialistas y pacientes",
   "private": true,
   "license": "MIT",
