@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -27,9 +28,9 @@ export default function Home() {
               <a href="#about" className="text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                 Acerca de
               </a>
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+              <Link href="/login" className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
                 Iniciar Sesión
-              </button>
+              </Link>
             </div>
           </div>
         </nav>
@@ -50,12 +51,12 @@ export default function Home() {
               con nuestra plataforma segura de comunicación médica.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
+              <Link href="/register" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
                 Registrarse como Médico
-              </button>
-              <button className="bg-white hover:bg-slate-50 text-indigo-600 border-2 border-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-indigo-400 dark:border-indigo-400">
+              </Link>
+              <Link href="/register" className="bg-white hover:bg-slate-50 text-indigo-600 border-2 border-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-indigo-400 dark:border-indigo-400">
                 Registrarse como Paciente
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -201,10 +202,10 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                Gestión de Casos
+                Trazabilidad Completa
               </h3>
               <p className="text-slate-600 dark:text-slate-300">
-                Organiza interconsultas por caso clínico con historial completo y archivos adjuntos.
+                Registro detallado de todas las interacciones médicas para seguimiento y auditoría clínica.
               </p>
             </div>
 
@@ -212,14 +213,14 @@ export default function Home() {
             <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 hover:shadow-lg transition-all">
               <div className="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                Experiencia del Paciente
+                Tiempo Real
               </h3>
               <p className="text-slate-600 dark:text-slate-300">
-                Pacientes informados y participativos con visibilidad sobre su proceso de tratamiento.
+                Comunicación instantánea entre especialistas para casos urgentes y seguimiento continuo.
               </p>
             </div>
           </div>
@@ -228,20 +229,20 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            ¿Listo para revolucionar la colaboración médica?
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            ¿Listo para mejorar la colaboración médica?
           </h2>
-          <p className="text-xl text-indigo-100 mb-8">
-            Únete a la nueva era de la comunicación médica segura y eficiente
+          <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+            Únete a EchoMind y transforma la forma en que los médicos colaboran y los pacientes reciben atención.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
+            <Link href="/register" className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
               Comenzar Ahora
-            </button>
-            <button className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105">
-              Solicitar Demo
-            </button>
+            </Link>
+            <Link href="/login" className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105">
+              Ya tengo cuenta
+            </Link>
           </div>
         </div>
       </section>
@@ -260,19 +261,19 @@ export default function Home() {
                 <span className="text-xl font-bold">EchoMind</span>
               </div>
               <p className="text-slate-400">
-                Plataforma de colaboración médica que conecta especialistas y mejora la atención del paciente.
+                Potenciando la colaboración médica del futuro.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Producto</h3>
+              <h3 className="text-lg font-semibold mb-4">Producto</h3>
               <ul className="space-y-2 text-slate-400">
                 <li><a href="#" className="hover:text-white transition-colors">Características</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Seguridad</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Precios</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Seguridad</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Soporte</h3>
+              <h3 className="text-lg font-semibold mb-4">Soporte</h3>
               <ul className="space-y-2 text-slate-400">
                 <li><a href="#" className="hover:text-white transition-colors">Documentación</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
@@ -280,11 +281,11 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
+              <h3 className="text-lg font-semibold mb-4">Legal</h3>
               <ul className="space-y-2 text-slate-400">
                 <li><a href="#" className="hover:text-white transition-colors">Privacidad</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Términos</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">HIPAA</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Licencia</a></li>
               </ul>
             </div>
           </div>
