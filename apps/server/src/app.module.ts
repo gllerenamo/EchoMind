@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth.module';
+import { ClinicalCaseModule } from './modules/clinical-case.module';
 import { getDatabaseConfig } from './config/database.config';
 
 @Module({
@@ -18,6 +19,7 @@ import { getDatabaseConfig } from './config/database.config';
       inject: [ConfigService],
     }),
     AuthModule,
+    ClinicalCaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
