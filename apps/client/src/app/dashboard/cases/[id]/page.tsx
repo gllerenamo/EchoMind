@@ -7,6 +7,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Chat from './Chat';
 import AssignDoctor from './AssignDoctor';
+import ReferralSection from './ReferralSection';
 
 export default function CaseDetailPage() {
   const { user } = useAuth();
@@ -145,6 +146,7 @@ export default function CaseDetailPage() {
       {user.role === 'admin' && (
         <AssignDoctor caseId={caseData.id} onAssigned={() => router.refresh()} />
       )}
+      <ReferralSection caseId={caseData.id} patientId={caseData.patientId} />
       {/* Aquí se pueden agregar acciones futuras: asignar médico, chat, etc. */}
       <Chat caseId={caseData.id} />
     </div>
