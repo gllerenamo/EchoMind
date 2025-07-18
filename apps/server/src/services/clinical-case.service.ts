@@ -31,7 +31,14 @@ export class ClinicalCaseService {
   }
 
   async findAllForUser(user: any) {
-    if (user.role === 'patient') {
+    if (user.role === 'admin') {
+      // Solo casos pendientes, si lo prefieres
+      return this.clinicalCaseRepository.find({
+        where: { status: 'pending' },
+        relations: ['assignedDoctors', 'patient'],
+        order: { createdAt: 'DESC' }
+      });
+    } else if (user.role === 'patient') {
       return this.clinicalCaseRepository.find({ where: { patientId: user.id }, relations: ['assignedDoctors'] });
     } else if (user.role === 'doctor') {
       return this.clinicalCaseRepository
