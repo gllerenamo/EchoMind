@@ -5,6 +5,7 @@ import { useAuth } from '../../../../contexts/AuthContext';
 import { caseApi } from '../../../../services/api';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Chat from './Chat';
 
 export default function CaseDetailPage() {
   const { user } = useAuth();
@@ -22,10 +23,10 @@ export default function CaseDetailPage() {
     setLoading(true);
     caseApi.getCase(params.id as string)
       .then((res) => {
-        setCaseData(res.data);
+        setCaseData(res);
         setEditFields({
-          diagnosis: res.data.diagnosis || '',
-          treatment: res.data.treatment || '',
+          diagnosis: res.diagnosis || '',
+          treatment: res.treatment || '',
         });
       })
       .catch((err) => setError(err.response?.data?.message || 'Error al cargar el caso clínico'))
@@ -140,6 +141,7 @@ export default function CaseDetailPage() {
         </ul>
       </div>
       {/* Aquí se pueden agregar acciones futuras: asignar médico, chat, etc. */}
+      <Chat caseId={caseData.id} />
     </div>
   );
 } 

@@ -65,17 +65,40 @@ export default function NewCasePage() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
         <div>
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Título</label>
-          <input {...register('title')} className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white" />
+          <span className="text-xs text-slate-400">Escribe un título claro que resuma el principal síntoma o motivo de consulta.</span>
+          <input 
+            {...register('title')}
+            className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+            placeholder="Dolor abdominal persistente desde hace 3 días"
+          />
           {errors.title && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Descripción</label>
-          <textarea {...register('description')} rows={3} className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white" />
+          <span className="text-xs text-slate-400">
+            Describe cuándo comenzaron los síntomas, cómo han evolucionado y cualquier otra información que creas relevante.
+          </span>
+          <textarea
+            {...register('description')}
+            rows={3}
+            className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+            placeholder="Empecé con molestias estomacales el lunes, al principio solo era ardor pero ahora siento dolor constante.
+            No he tomado medicamentos, y el dolor empeora después de comer."
+          />
           {errors.description && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Síntomas <span className="text-xs text-slate-400">(separados por coma)</span></label>
-          <input {...register('symptoms')} className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Síntomas <span className="text-xs text-slate-400">(separados por coma)</span>
+          </label>
+          <span className="text-xs text-slate-400">
+            Enumera los síntomas más importantes que estás experimentando.
+          </span>
+          <input
+            {...register('symptoms')}
+            className="mt-1 block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+            placeholder="dolor abdominal, náuseas, fatiga"
+          />
           {errors.symptoms && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.symptoms.message}</p>}
         </div>
         <div>

@@ -87,4 +87,16 @@ export const caseApi = {
     const response = await api.patch(`/cases/${id}`, data);
     return response.data;
   },
+
+  // Obtener mensajes del chat de un caso clínico
+  getCaseMessages: async (caseId: string) => {
+    const response = await api.get(`/cases/${caseId}/messages`);
+    return response.data;
+  },
+
+  // Enviar mensaje al chat de un caso clínico
+  sendCaseMessage: async (caseId: string, content: string) => {
+    const response = await api.post(`/cases/${caseId}/messages`, { content });
+    return response.data;
+  },
 }; 
