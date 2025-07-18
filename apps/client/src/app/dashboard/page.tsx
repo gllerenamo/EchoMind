@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const { user, loading, logout } = useAuth();
@@ -130,10 +131,27 @@ export default function DashboardPage() {
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+          <Link href="/dashboard/cases" className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6 hover:shadow-lg transition-all block">
             <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+              Casos Clínicos
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400">
+              {user.role === 'doctor' 
+                ? 'Gestiona y revisa los casos clínicos asignados a ti.'
+                : 'Crea y gestiona tus propios casos clínicos.'
+              }
+            </p>
+          </Link>
+
+          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
@@ -143,23 +161,6 @@ export default function DashboardPage() {
               {user.role === 'doctor' 
                 ? 'Gestiona tus interconsultas y colabora con otros especialistas'
                 : 'Solicita interconsultas y mantén comunicación con tus médicos'
-              }
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-              Casos Clínicos
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              {user.role === 'doctor' 
-                ? 'Revisa y gestiona los casos clínicos de tus pacientes'
-                : 'Accede a tu historial médico y casos clínicos'
               }
             </p>
           </div>

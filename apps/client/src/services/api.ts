@@ -55,4 +55,36 @@ export const authApi = {
     const response = await api.get('/auth/profile');
     return response.data;
   },
+};
+
+export const caseApi = {
+  // Crear caso clínico
+  createCase: async (data: any) => {
+    const response = await api.post('/cases', data);
+    return response.data;
+  },
+
+  // Listar casos clínicos
+  getCases: async () => {
+    const response = await api.get('/cases');
+    return response.data;
+  },
+
+  // Obtener detalle de un caso clínico
+  getCase: async (id: string) => {
+    const response = await api.get(`/cases/${id}`);
+    return response.data;
+  },
+
+  // Asignar médico a un caso clínico
+  assignDoctorToCase: async (caseId: string, doctorId: string) => {
+    const response = await api.patch(`/cases/${caseId}/assign/${doctorId}`);
+    return response.data;
+  },
+
+  // Actualizar caso clínico
+  updateCase: async (id: string, data: any) => {
+    const response = await api.patch(`/cases/${id}`, data);
+    return response.data;
+  },
 }; 
