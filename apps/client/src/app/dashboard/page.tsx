@@ -137,9 +137,7 @@ export default function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-              Casos Clínicos
-            </h3>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Casos Clínicos</h3>
             <p className="text-slate-600 dark:text-slate-400">
               {user.role === 'doctor' 
                 ? 'Gestiona y revisa los casos clínicos asignados a ti.'
@@ -147,40 +145,28 @@ export default function DashboardPage() {
               }
             </p>
           </Link>
-
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Link href="/dashboard/referrals" className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6 hover:shadow-lg transition-all block">
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-              Interconsultas
-            </h3>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Interconsultas</h3>
             <p className="text-slate-600 dark:text-slate-400">
-              {user.role === 'doctor' 
-                ? 'Gestiona tus interconsultas y colabora con otros especialistas'
-                : 'Solicita interconsultas y mantén comunicación con tus médicos'
-              }
+              Visualiza y gestiona todas tus interconsultas, tanto enviadas como recibidas.
             </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+          </Link>
+          <Link href="/dashboard/chats" className="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6 hover:shadow-lg transition-all block">
             <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM4 19h6v-2H4v2zM4 15h6v-2H4v2zM4 11h6V9H4v2zM4 7h6V5H4v2zM10 7h10V5H10v2zM10 11h10V9H10v2zM10 15h10v-2H10v2zM10 19h10v-2H10v2z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-              Historial
-            </h3>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Historial de Chat</h3>
             <p className="text-slate-600 dark:text-slate-400">
-              {user.role === 'doctor' 
-                ? 'Consulta el historial completo de tus pacientes'
-                : 'Revisa tu historial médico y tratamientos'
-              }
+              Accede rápidamente a los chats de tus casos clínicos y mantente al tanto de las conversaciones.
             </p>
-          </div>
+          </Link>
         </div>
 
         {/* Coming Soon */}
