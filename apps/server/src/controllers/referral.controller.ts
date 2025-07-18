@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
-import { UseGuards } from "@nestjs/common";
-import { CreateReferralDto } from "src/dto/create-referral.dto";
-import { JwtAuthGuard } from "src/guards/jwt-auth.guard";
-import { ReferralService } from "src/services/referral.service";
+import { Controller, Post, Get, Param, Body, UseGuards, Req, Request } from '@nestjs/common';
+import { ReferralService } from '../services/referral.service';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { CreateReferralDto } from '../dto/create-referral.dto';
 
 @Controller('referrals')
 @UseGuards(JwtAuthGuard)
@@ -18,5 +17,10 @@ export class ReferralController {
   @Get(':clinicalCaseId')
   async getAll(@Param('clinicalCaseId') clinicalCaseId: number) {
     return this.referralService.getReferralsByCase(clinicalCaseId);
+  }
+
+  @Get('/user/all')
+  async getUserReferrals(@Request() req) {
+    return this.referralService.getReferralsByUser(req.user);
   }
 }

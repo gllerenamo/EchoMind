@@ -106,4 +106,26 @@ export const doctorApi = {
     const response = await api.get('/doctors');
     return response.data;
   },
+};
+
+export const referralApi = {
+  getReferralsByCase: async (clinicalCaseId: string) => {
+    const response = await api.get(`/referrals/${clinicalCaseId}`);
+    return response.data;
+  },
+  createReferral: async (data: { clinicalCaseId: string; toDoctorId: string; reason: string }) => {
+    const response = await api.post('/referrals', data);
+    return response.data;
+  },
+  getUserReferrals: async () => {
+    const response = await api.get('/referrals/user/all');
+    return response.data;
+  },
+};
+
+export const chatApi = {
+  getUserChats: async () => {
+    const response = await api.get('/messages/user/all');
+    return response.data;
+  },
 }; 
