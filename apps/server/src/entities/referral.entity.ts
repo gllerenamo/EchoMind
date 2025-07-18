@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } f
 import { Doctor } from './doctor.entity';
 import { ClinicalCase } from './clinical-case.entity';
 
-@Entity()
+@Entity('referrals')
 export class Referral {
   @PrimaryGeneratedColumn()
   id: number;

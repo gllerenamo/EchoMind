@@ -11,7 +11,9 @@ export class ReferralService {
   constructor(
     @InjectRepository(Referral)
     private referralRepo: Repository<Referral>,
+    @InjectRepository(ClinicalCase)
     private clinicalCaseRepo: Repository<ClinicalCase>,
+    @InjectRepository(Doctor)
     private doctorRepo: Repository<Doctor>,
   ) {}
 
