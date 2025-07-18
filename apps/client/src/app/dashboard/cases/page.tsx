@@ -15,7 +15,7 @@ export default function CasesListPage() {
     if (!user) return;
     setLoading(true);
     caseApi.getCases()
-      .then((res) => setCases(res.data))
+      .then((res) => setCases(res))
       .catch((err) => setError(err.response?.data?.message || 'Error al cargar los casos'))
       .finally(() => setLoading(false));
   }, [user]);
