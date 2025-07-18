@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne } from 'typeorm';
 import { Consultation } from './consultation.entity';
+import { ClinicalCase } from './clinical-case.entity';
 
 @Entity('messages')
 export class Message {
@@ -25,9 +26,15 @@ export class Message {
   createdAt: Date;
 
   // Relations
-  @ManyToOne(() => Consultation, consultation => consultation.messages)
+  @ManyToOne(() => Consultation, consultation => consultation.messages, { nullable: true })
   consultation: Consultation;
 
-  @Column()
+  @Column({ nullable: true })
   consultationId: string;
+
+  @ManyToOne(() => ClinicalCase, clinicalCase => clinicalCase.id, { nullable: true })
+  clinicalCase: ClinicalCase;
+
+  @Column({ nullable: true })
+  clinicalCaseId: string;
 } 
