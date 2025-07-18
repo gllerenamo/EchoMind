@@ -7,7 +7,7 @@ async function bootstrap() {
   
   // Configurar CORS
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:3001', "backend-production-2a8c.up.railway.app"],
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'frontend-production-3a85.up.railway.app'],
     credentials: true,
   });
 
