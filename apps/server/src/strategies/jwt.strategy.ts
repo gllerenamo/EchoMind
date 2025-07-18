@@ -37,6 +37,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         where: { id: userId },
         select: ['id', 'email', 'name', 'role', 'licenseNumber', 'specialty', 'hospital', 'phoneNumber']
       });
+    } else if (role === 'admin') {
+      user = await this.patientRepository.findOne({
+        where: { id: userId },
+        select: ['id', 'email', 'name', 'role', 'dateOfBirth', 'phoneNumber']
+      });
     }
 
     if (!user) {
