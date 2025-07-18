@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Patient } from './patient.entity';
 import { Doctor } from './doctor.entity';
 import { Consultation } from './consultation.entity';
+import { Referral } from './referral.entity';
 
 @Entity('clinical_cases')
 export class ClinicalCase {

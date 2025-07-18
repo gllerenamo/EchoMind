@@ -1,3 +1,9 @@
+import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
+import { UseGuards } from "@nestjs/common";
+import { CreateReferralDto } from "src/dto/create-referral.dto";
+import { JwtAuthGuard } from "src/guards/jwt-auth.guard";
+import { ReferralService } from "src/services/referral.service";
+
 @Controller('referrals')
 @UseGuards(JwtAuthGuard)
 export class ReferralController {
