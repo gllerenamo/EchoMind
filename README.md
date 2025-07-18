@@ -174,13 +174,13 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 🗺️ Roadmap
 
-- [ ] Sistema de JWT y autenticación completa
-- [ ] Gestión de casos clínicos
-- [ ] Sistema de interconsultas
-- [ ] Chat en tiempo real
+- [X] Sistema de JWT y autenticación completa
+- [X] Gestión de casos clínicos
+- [X] Sistema de interconsultas
+- [X] Chat en tiempo real
 - [ ] Notificaciones push
-- [ ] Dashboard de pacientes
-- [ ] Dashboard de médicos
+- [X] Dashboard de pacientes
+- [X] Dashboard de médicos
 - [ ] Sistema de archivos médicos
 - [ ] Integración con sistemas hospitalarios
 - [ ] App móvil
