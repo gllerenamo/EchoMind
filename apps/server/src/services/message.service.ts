@@ -56,4 +56,38 @@ export class MessageService {
       order: { createdAt: 'ASC' },
     });
   }
+
+  async getUserChatHistory(user: any) {
+    // Obtener todos los casos en los que el usuario participa
+    let cases: ClinicalCase[] = [];
+    if (user.role === 'patient') {
+      cases = await this.clinicalCaseRepository.find({ where: { patientId: user.id } });
+    } else if (user.role === 'doctor') {
+      cases = await this.clinicalCaseRepository
+        .createQueryBuilder('case')
+        .leftJoin('case.assignedDoctors', 'doctor')
+        .where('doctor.id = :id', { id: user.id })
+        .getMany();
+    }
+    if (cases.length === 0) return [];
+    // Para cada caso, obtener el último mensaje
+    const result = await Promise.all(
+      cases.map(async (c) => {
+        const lastMsg = await this.messageRepository.findOne({
+          where: { clinicalCaseId: c.id },
+          order: { createdAt: 'DESC' },
+        });
+        return {
+          case: c,
+          lastMessage: lastMsg,
+        };
+      })
+    );
+    // Ordenar por fecha del último mensaje (más reciente primero)
+    return result.sort((a, b) => {
+      const dateA = a.lastMessage?.createdAt ? new Date(a.lastMessage.createdAt).getTime() : 0;
+      const dateB = b.lastMessage?.createdAt ? new Date(b.lastMessage.createdAt).getTime() : 0;
+      return dateB - dateA;
+    });
+  }
 } 

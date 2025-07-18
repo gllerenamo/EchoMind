@@ -17,4 +17,15 @@ export class MessageController {
   async getMessages(@Param('caseId') caseId: string, @Request() req) {
     return this.messageService.getMessages(caseId, req.user);
   }
+}
+
+@UseGuards(JwtAuthGuard)
+@Controller('messages')
+export class MessageHistoryController {
+  constructor(private readonly messageService: MessageService) {}
+
+  @Get('/user/all')
+  async getUserChats(@Request() req) {
+    return this.messageService.getUserChatHistory(req.user);
+  }
 } 
