@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth.module';
 import { ClinicalCaseModule } from './modules/clinical-case.module';
 import { getDatabaseConfig } from './config/database.config';
+import { ReferralModule } from './modules/referral.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { getDatabaseConfig } from './config/database.config';
     }),
     AuthModule,
     ClinicalCaseModule,
+    ReferralModule
   ],
   controllers: [AppController],
   providers: [AppService],

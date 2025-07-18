@@ -60,4 +60,7 @@ export class ClinicalCase {
 
   @OneToMany(() => Consultation, consultation => consultation.clinicalCase)
   consultations: Consultation[];
+
+  @OneToMany(() => Referral, referral => referral.clinicalCase)
+referrals: Referral[];
 } 
