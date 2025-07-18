@@ -67,12 +67,35 @@ export class ClinicalCaseService {
   }
 
   async update(caseId: string, dto: UpdateClinicalCaseDto, user: any) {
-    const clinicalCase = await this.clinicalCaseRepository.findOne({ where: { id: caseId } });
+    const clinicalCase = await this.clinicalCaseRepository.findOne({ where: { id: caseId }, relations: ['assignedDoctors'] });
     if (!clinicalCase) throw new NotFoundException('Caso clínico no encontrado');
-    if (user.role !== 'admin' && clinicalCase.patientId !== user.id) {
-      throw new ForbiddenException('No tienes permiso para actualizar este caso');
+
+    // Si es admin, puede editar todo
+    if (user.role === 'admin') {
+      Object.assign(clinicalCase, dto);
+      return this.clinicalCaseRepository.save(clinicalCase);
     }
-    Object.assign(clinicalCase, dto);
-    return this.clinicalCaseRepository.save(clinicalCase);
+
+    // Si es paciente, solo puede editar sus propios casos y no puede editar diagnóstico/tratamiento
+    if (user.role === 'patient') {
+      if (clinicalCase.patientId !== user.id) {
+        throw new ForbiddenException('No tienes permiso para actualizar este caso');
+      }
+      // Eliminar diagnosis y treatment del dto si existen
+      const { diagnosis, treatment, ...rest } = dto;
+      Object.assign(clinicalCase, rest);
+      return this.clinicalCaseRepository.save(clinicalCase);
+    }
+
+    // Si es médico asignado, solo puede editar diagnóstico y tratamiento
+    if (user.role === 'doctor' && clinicalCase.assignedDoctors.some((d) => d.id === user.id)) {
+      const allowedFields: Partial<UpdateClinicalCaseDto> = {};
+      if (dto.diagnosis !== undefined) allowedFields.diagnosis = dto.diagnosis;
+      if (dto.treatment !== undefined) allowedFields.treatment = dto.treatment;
+      Object.assign(clinicalCase, allowedFields);
+      return this.clinicalCaseRepository.save(clinicalCase);
+    }
+
+    throw new ForbiddenException('No tienes permiso para actualizar este caso');
   }
 } 
