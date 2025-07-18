@@ -99,4 +99,11 @@ export const caseApi = {
     const response = await api.post(`/cases/${caseId}/messages`, { content });
     return response.data;
   },
+};
+
+export const doctorApi = {
+  getDoctors: async () => {
+    const response = await api.get('/doctors');
+    return response.data;
+  },
 }; 

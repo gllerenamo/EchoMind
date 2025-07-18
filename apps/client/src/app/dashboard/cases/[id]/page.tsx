@@ -6,6 +6,7 @@ import { caseApi } from '../../../../services/api';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Chat from './Chat';
+import AssignDoctor from './AssignDoctor';
 
 export default function CaseDetailPage() {
   const { user } = useAuth();
@@ -37,6 +38,7 @@ export default function CaseDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-lg text-slate-700 dark:text-slate-200">Debes iniciar sesión para ver el caso clínico.</p>
+        <Link href="/dashboard" className="text-indigo-600 hover:text-indigo-700">Volver al dashboard</Link>
       </div>
     );
   }
@@ -140,6 +142,9 @@ export default function CaseDetailPage() {
           )}
         </ul>
       </div>
+      {user.role === 'admin' && (
+        <AssignDoctor caseId={caseData.id} onAssigned={() => router.refresh()} />
+      )}
       {/* Aquí se pueden agregar acciones futuras: asignar médico, chat, etc. */}
       <Chat caseId={caseData.id} />
     </div>
