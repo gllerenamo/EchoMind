@@ -15,7 +15,7 @@ export class ReferralController {
   }
 
   @Get(':clinicalCaseId')
-  async getAll(@Param('clinicalCaseId') clinicalCaseId: number) {
+  async getAll(@Param('clinicalCaseId') clinicalCaseId: string) {
     return this.referralService.getReferralsByCase(clinicalCaseId);
   }
 

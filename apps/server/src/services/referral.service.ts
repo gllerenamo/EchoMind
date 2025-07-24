@@ -35,9 +35,9 @@ export class ReferralService {
     return this.referralRepo.save(referral);
   }
 
-  async getReferralsByCase(clinicalCaseId: number) {
+  async getReferralsByCase(clinicalCaseId: string) {
     return this.referralRepo.find({
-      where: { clinicalCase: { id: clinicalCaseId.toString() } },
+      where: { clinicalCase: { id: clinicalCaseId } },
       relations: ['fromDoctor', 'toDoctor'],
       order: { createdAt: 'DESC' },
     });
