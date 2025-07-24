@@ -8,6 +8,7 @@ import { ClinicalCaseModule } from './modules/clinical-case.module';
 import { MessageModule } from './modules/message.module';
 import { ReferralModule } from './modules/referral.module';
 import { DoctorModule } from './modules/doctor.module';
+import { NotificationModule } from './modules/notification.module';
 import { getDatabaseConfig } from './config/database.config';
 
 @Module({
@@ -26,6 +27,7 @@ import { getDatabaseConfig } from './config/database.config';
     MessageModule,
     ReferralModule,
     DoctorModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
