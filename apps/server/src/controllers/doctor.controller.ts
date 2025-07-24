@@ -14,7 +14,7 @@ export class DoctorController {
 
   @Get()
   async findAll(@Request() req): Promise<Doctor[]> {
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'admin' || req.user.role !== 'doctor') {
       return [];
     }
     return this.doctorRepository.find({ select: ['id', 'name', 'email', 'specialty', 'licenseNumber', 'hospital'] });
