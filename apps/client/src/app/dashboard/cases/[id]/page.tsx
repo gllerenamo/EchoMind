@@ -147,7 +147,7 @@ export default function CaseDetailPage() {
         <AssignDoctor caseId={caseData.id} onAssigned={() => router.refresh()} />
       )}
       <ReferralSection caseId={caseData.id} patientId={caseData.patientId} />
-      {/* Aquí se pueden agregar acciones futuras: asignar médico, chat, etc. */}
+      
       <Chat caseId={caseData.id} />
     </div>
   );

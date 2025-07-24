@@ -22,7 +22,7 @@ export default function Chat({ caseId }: ChatProps) {
     let interval: NodeJS.Timeout;
     const fetchMessages = () => {
       caseApi.getCaseMessages(caseId)
-        .then((res) => setMessages(res.data))
+        .then((res) => setMessages(res))
         .catch((err) => setError(err.response?.data?.message || 'Error al cargar mensajes'))
         .finally(() => setLoading(false));
     };
